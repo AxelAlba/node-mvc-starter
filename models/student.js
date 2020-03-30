@@ -15,4 +15,38 @@ const studentSchema = new mongoose.Schema({
   }
 );
 
-module.exports = mongoose.model('students', studentSchema);
+const studentModel = mongoose.model('students', studentSchema);
+
+exports.getAll = function(sort, next) {
+  studentModel.find({}).sort(sort).exec(function(err, result) {
+    if (err) throw err;
+    var studentObjects = [];
+
+    result.forEach(function(doc) {
+      studentObjects.push(doc.toObject());
+    });
+
+    next(studentObjects);
+  });
+};
+
+exports.create = function (obj, next) 
+{
+  var student = new studentModel(obj);
+
+  student.save(function (err, student){
+    next(err, student);
+  });
+};
+
+exports.query = function(pattern, sort, next) {
+  studentModel.find({ name: { $regex: pattern } }).sort(sort).exec( function(err, students){
+      next(students);
+  });
+};
+
+exports.updateOne = function(query, update, obj, next) {
+  studentModel.findOneAndUpdate(query, update, obj, function(err, user) {
+    next(err, user);
+  });
+};
