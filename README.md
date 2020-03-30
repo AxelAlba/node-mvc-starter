@@ -4,12 +4,12 @@ Name: Alba, Axel T.
 
 ## View All Students
 
-`![alt text](screens/view-all-alba.png)
+`![screens/view-all-alba.png](screens/view-all-alba.png)
 
 ## Add Student
 
-`![alt text](screens/add-student-alba.png)
+`![screens/add-student-alba.png](screens/add-student-alba.png)
 
 ## Search Students
 
-`![alt text](screens/search-students-alba.png)
+`![screens/search-students-alba.png](screens/search-students-alba.png)
