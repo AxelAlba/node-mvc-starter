@@ -4,6 +4,7 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const handlebars = require('handlebars');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 // Importing the model
 const studentModel = require('./models/student');
@@ -32,6 +33,15 @@ app.use(express.static('public'));
 
 //routers
 const studentRouter = require('./routes/studentRoutes');
+
+//mongoDB Database
+const databaseURL = 'mongodb://localhost:27017/studentsdb';
+
+const options = { useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false };
+
+mongoose.connect(databaseURL, options);
 
 // Listening to the port provided
 app.listen(port, function() {
